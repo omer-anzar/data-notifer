@@ -1,0 +1,9 @@
+'http://www.kcapk.com/Docs/DMR dated {:%d.%m.%Y}.pdf'.format(getDate())
+'https://mufap.com.pk/pdf/PKISRVs/{:%Y}/{}/PKISRV{:%d%m%Y}.csv'.format(getDate(),month,getDate())
+'https://mufap.com.pk/pdf/PKFRVs/{:%Y}/{}/PKFRV{:%d%m%Y}.csv'.format(getDate(),month,getDate())
+'https://www.sbp.org.pk/ecodata/EBND.pdf'
+'https://mufap.com.pk/pdf/PricesDebtSecurities/{:%Y}/{}/v{:%d%m%Y}.pdf'.format(getDate(),month,getDate())
+'https://www.sbp.org.pk/ecodata/rates/war/{:%Y}/{:%b}/{:%d-%b-%Y}.pdf'.format(getDate(),getDate(),getDate())
+'https://www.sbp.org.pk/ecodata/rates/m2m/{:%Y}/{:%b}/{:%d-%b-%y}.pdf'.format(getDate(),getDate(),getDate())
+'https://www.sbp.org.pk/ecodata/crates/{:%Y}/{:%b}/{:%d-%b-%y}.pdf'.format(getDate(),getDate(),getDate())
+'https://www.sbp.org.pk/ecodata/OvernightsRepoRates2.pdf'

@@ -4,6 +4,7 @@ import time
 from plyer import notification
 import os
 import win32gui, win32con
+import csv
 
 
 hide = win32gui.GetForegroundWindow()
@@ -46,6 +47,22 @@ def getDate():
 def printHash():
     print("#################################################")
     time.sleep(1)
+
+#import links and name
+def importLinks():
+    names_list = []
+    links_list = []
+    month = "{:%B}".format(getDate())
+    month = month[:4]
+    with open("files/links.txt") as links:
+        with open("files/names.txt") as names:
+            links = csv.reader(links, delimiter="\n")
+            names = csv.reader(names, delimiter="\n")
+            for i in links:
+                links_list.append(eval(i[0]))
+            for j in names:
+                names_list.append(j[0])
+    return names_list,links_list
 
 
 def modifiedFunction(names,urls):
@@ -129,32 +146,10 @@ def notifyModified(names,urls,modifiedList):
 #main method
 def main():
 
-
-    names = ["Local Cotton",
-            "GOPIS Prices",
-            "PIB-FRR Prices",
-            "PIB Trade Data",
-            "TFC Prices",
-            "SBP Customer Rates",
-            "SBP Reval Rates",
-            "SBP FE25 Rates",
-            "W.Avg.Repo Rate"
-            ]
-
-
     while (True):
         try:
-            month = "{:%B}".format(getDate())
-            month = month[:4]
-            urls=['http://www.kcapk.com/Docs/DMR dated {:%d.%m.%Y}.pdf'.format(getDate()),
-                'https://mufap.com.pk/pdf/PKISRVs/{:%Y}/{}/PKISRV{:%d%m%Y}.csv'.format(getDate(),month,getDate()),
-                'https://mufap.com.pk/pdf/PKFRVs/{:%Y}/{}/PKFRV{:%d%m%Y}.csv'.format(getDate(),month,getDate()),
-                'https://www.sbp.org.pk/ecodata/EBND.pdf',
-                'https://mufap.com.pk/pdf/PricesDebtSecurities/{:%Y}/{}/v{:%d%m%Y}.pdf'.format(getDate(),month,getDate()),
-                'https://www.sbp.org.pk/ecodata/rates/war/{:%Y}/{:%b}/{:%d-%b-%Y}.pdf'.format(getDate(),getDate(),getDate()),
-                'https://www.sbp.org.pk/ecodata/rates/m2m/{:%Y}/{:%b}/{:%d-%b-%y}.pdf'.format(getDate(),getDate(),getDate()),
-                'https://www.sbp.org.pk/ecodata/crates/{:%Y}/{:%b}/{:%d-%b-%y}.pdf'.format(getDate(),getDate(),getDate()),
-                'https://www.sbp.org.pk/ecodata/OvernightsRepoRates2.pdf']
+            names, urls = importLinks()
+            
             modifiedList = savingModifiedFiles(names,urls)
             notifyModified(names,urls,modifiedList)
             timer(delayed())
