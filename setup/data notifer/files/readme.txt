@@ -8,7 +8,7 @@ If links has date syntax inside it that changes daily then u have to uses these
 
 #############################
 Date
-30.09.2021 	: {:%d.%m.%Y}	
+30.09.2021 	: {:%d.%m.%Y}	.format(getDate())	
 30092021 	: {:%d%m%Y}	.format(getDate())
 30-Sep-2021	: {:%d-%b-%Y}	.format(getDate())
 2021 		: {:%Y}		.format(getDate())
