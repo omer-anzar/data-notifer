@@ -26,8 +26,8 @@ def timer(delay):
     while (i< delay/2):
         i+=1
         j+=2
-        os.system('cls')#clear console
-        print(j,'seconds')
+        #os.system('cls')#clear console
+        #print(j,'seconds')
         time.sleep(2) #twice the condition hence time not change
         try:
             delay = delayed()
